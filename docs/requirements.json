@@ -1,0 +1,224 @@
+{
+  "project": {
+    "name": "project",
+    "exportDate": "2026-11-18T08:27:27.505Z"
+  },
+  "requirements": [
+    {
+      "id": "R-1",
+      "text": "The player must be able to input cell cordinates",
+      "description": "Basic interaction to attempt acquiring a cell, also allows grid-based gameplay\nPriority:\nRequired to trigger system actions and challenges, High system priority\nEssential to user interaction, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-2",
+      "text": "The player must be able to acquire a cell",
+      "description": "Involves input validation, challenge handling, and grid updates/edits.\nPriority:\nAffects game logic, ownership, and state updates, High system priority\nCentral to gameplay experience, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-3",
+      "text": "The game must be able to edit the grid",
+      "description": "Multiplayer game so edits are real-time, important for game state consistency.\nPriority:\nSystem needs to process grid data, High system priority\nPlayers just need to know the aftermath of what happened, Medium user priority",
+      "type": "Functional",
+      "userPriority": "Medium",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-4",
+      "text": "The player must be able to trade cells with other players",
+      "description": "Requires a clear trade logic and fairness rules. \nPriority:\nSystem just needs to edit any change, Medium system priority\nBasic gameplay aspect , High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "Medium"
+    },
+    {
+      "id": "R-5",
+      "text": "The player must be able to see the grid",
+      "description": "Players need to view the grid to make informed decisions \nPriority:\nMostly depends on rendering and real-time updates, Medium system priority\nCrucial for navigation and interaction, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "Medium"
+    },
+    {
+      "id": "R-6",
+      "text": "The system must be able to give pop-up messages to players",
+      "description": "Helps with informing players about game events, errors, or instructions.\nPriority:\nEnhances communication and clarity, High system priority\nImproves user experience and feedback, Medium user priority",
+      "type": "Functional",
+      "userPriority": "Medium",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-7",
+      "text": "The system must be able to check player inputs",
+      "description": "Basic requirment for maintaining valid actions and rule enforcement(Game Logic)\nPriority:\nEssential for keeping Game Logic in check, High system priority\nEnsures fair and predictable gameplay, Medium user priority",
+      "type": "Functional",
+      "userPriority": "Medium",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-8",
+      "text": "The system must be able to accomodate 4 to 36 players",
+      "description": "Scalability requirement. \nPriority:\nSession and state handling for multiple players, High system priority\nPlayers just want to play, Low user priority",
+      "type": "NonFunctional",
+      "userPriority": "Low",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-9",
+      "text": "The game must be able to initialise a profile for each player",
+      "description": "Creates player identity and stores  preferences or settings.\nPriority:\nNeeded for player tracking and personalization, High system priority\nImportant for identity and engagement, Medium user priority",
+      "type": "Functional",
+      "userPriority": "Medium",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-10",
+      "text": "The player must be able to edit his profile",
+      "description": "Allows players to customize their identity(name, avatar, language)\nPriority:\nRequires validation and data persistence, Medium system priority\nImproves personalization and player satisfaction, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "Medium"
+    },
+    {
+      "id": "R-11",
+      "text": "The system must be able to operate on browser",
+      "description": "Defines the platform for accessibility; no installation required.\nPriority:\nImpacts compatibility, High system priority\nEnables easy access and play-anywhere experience, High user priority",
+      "type": "NonFunctional",
+      "userPriority": "High",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-12",
+      "text": "The system must be able to give challenges",
+      "description": "Triggered when a player attempts to acquire a cell; basic gameplay element\nPriority:\nPart of game logic and progression flow, High system priority\nDirectly affects player engagement and interaction, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-13",
+      "text": "The system must be able to play sound effects",
+      "description": "Provides immersion and helps players follow whats happening\nPriority:\nDoesn’t affect game rules/state low system priority\nSound effects enhance but they’re not critical to gameplay, Medium user priority",
+      "type": "NonFunctional",
+      "userPriority": "Medium",
+      "systemPriority": "Low"
+    },
+    {
+      "id": "R-14",
+      "text": "The system must be able to notify the player when it crashes",
+      "description": "Improves user experience in failure scenarios\nPriority:\nSupports error handling and recovery, High system priority\nPlayers would like to have some help in such scenarios, Medium user priority",
+      "type": "NonFunctional",
+      "userPriority": "Medium",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-15",
+      "text": "A player must be able to forfeit the game",
+      "description": "Allows a player to voluntarily concede and exit the game.\nPriority:\nRequires state knowledge and proper handling of game flow, High system priority\nProvides control and player choice, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-16",
+      "text": "The game must be able to color each cell according to its player",
+      "description": "Visual feedback that depends on accurate player data\nPriority:\nMostly a front-end responsibility, requires correct player data syncing with the UI, Medium system priority\nPlayers need to know where each cells belong, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "Medium"
+    },
+    {
+      "id": "R-17",
+      "text": "The player must be able to complete challenges",
+      "description": "Allows game progression\nPriority:\nTied to validation and game state knowledge, High system priority\nCrucial for game advancement and engagement, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-18",
+      "text": "The game must be able to update the grid after each round",
+      "description": "Updates the UI elements of the grid for the player\nPriority:\nBasic to game state but mostly UI related, Medium system priority\nPlayers rely on the grid to understand whats happening, High player priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "Medium"
+    },
+    {
+      "id": "R-19",
+      "text": "The system must be able to set a timer",
+      "description": "Tied to turn logic or challenge limits ensuring paced gameplay\nPriority:\nTimers affect gameplay directly, user and system High priority",
+      "type": "NonFunctional",
+      "userPriority": "High",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-20",
+      "text": "The player must be able to select language",
+      "description": "Enables users to interact with the game in their preferred language\nPriority:\nRequires internationalization/translation support, low system priority\nImproves accessibility and user comfort, medium user priority",
+      "type": "NonFunctional",
+      "userPriority": "Medium",
+      "systemPriority": "Low"
+    },
+    {
+      "id": "R-21",
+      "text": "The player must be able to exit the game",
+      "description": "Allows the player leave the game at any time.\nPriority:\nRequires \"cleanup\" and game flow handling, Medium system priority\nGives control and respect to player choice ,High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "Medium"
+    },
+    {
+      "id": "R-22",
+      "text": "The system must be able to create a game",
+      "description": "Initializes a new game with required settings, grid, and players.\nPriority:\nBasic to game flow management, High system priority\nEssential for starting gameplay, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-23",
+      "text": "The player must be able to join the queue for a game",
+      "description": "Enables players to wait for a new game to start when one is not yet full or ready.\nPriority:\nRequires game coordination and player management, High system priority\nProvides access and smooth entry into gameplay, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-24",
+      "text": "The player must be able to see other players' information",
+      "description": "Displays data such as name, score, or owned cells to support awareness and strategy\nPriority:\nRequires real-time sync and data share but UI based, Medium system priority\nEnhances competition and engagement, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "Medium"
+    },
+    {
+      "id": "R-25",
+      "text": "The game must be able to operate turn based",
+      "description": "Controls the game flow so players act one at a time in a predefined order\nPriority:\nTurn Based mechanic defines the structure of the game flow, Both user and system High priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-26",
+      "text": "The system must be able to automatically remove inactive players after a set time.",
+      "description": "Important for multiplayer flow provided with tracking and fairness.\nPriority:\nRequires activity tracking and game edits, High system priority\nPlayers like fairness in gameplay as well as no time wasting, Medium user priority",
+      "type": "Functional",
+      "userPriority": "Medium",
+      "systemPriority": "High"
+    },
+    {
+      "id": "R-27",
+      "text": "The system must allow players to vote for a rematch at the end of a game.",
+      "description": "Increases engagement and competitiveness for the players.\nSystem must manage votes and session reset.\nPriority:\nSystem just tracks votes, Medium system priority\nPlayers like a competitive gameplay mechanics, High user priority",
+      "type": "Functional",
+      "userPriority": "High",
+      "systemPriority": "Medium"
+    }
+  ]
+}
