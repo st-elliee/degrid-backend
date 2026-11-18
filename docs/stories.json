@@ -1,0 +1,72 @@
+{
+  "project": {
+    "name": "Degrid - 2026",
+    "exportDate": "2026-11-18T08:27:32.139Z"
+  },
+  "stories": [
+    {
+      "id": "S-1",
+      "title": "System Game Creation",
+      "text": "Feature: Game Creation\n  As the system,\n  I want to create a game when enough players have joined the queue,\n  So that players can start playing.\n  \n  Scenario: Creating a game with the minimum number of players\n    Given there is a queue for joining a game\n    And at least 4 players are in the queue\n    When I detect enough players\n    Then I create a new game\n    And the queued players are placed in the game\n    \n  Scenario: Creating a game with the maximum number of players\n    Given there is a queue for joining a game\n    And 36 players are in the queue\n    When I detect 36 players\n    Then I create a new game\n    And the queued players are placed in the game\n    \n  Scenario: Handling players beyond the maximum limit\n    Given there is a queue for joining a game\n    And more than 36 players are in the queue\n    When I detect enough players\n    Then I create a new game with 36 players\n    And the remaining players stay in the queue for the next game\n    \n  Scenario: Not enough players to create a game\n    Given there are less than 4 players in the queue\n    When 360 seconds have passed\n    Then I notify the players they will have to wait longer\n    And I play music for the players",
+      "linkedRequirements": [
+        {
+          "id": "R-22",
+          "text": "The system must be able to create a game"
+        },
+        {
+          "id": "R-8",
+          "text": "The system must be able to accomodate 4 to 36 players"
+        },
+        {
+          "id": "R-13",
+          "text": "The system must be able to play sound effects"
+        },
+        {
+          "id": "R-19",
+          "text": "The system must be able to set a timer"
+        }
+      ]
+    },
+    {
+      "id": "S-2",
+      "title": "Joining a new queue",
+      "text": "Feature: Joining a new queue\r\n  As a player,\r\n  I want to join a queue,\r\n  So that I can be placed in a game when enough players have joined.\r\n\r\n  Scenario: Successfully joining the queue\r\n    Given I am not currently in a game\r\n    And I am connected to the system\r\n    When I request to join the queue\r\n    Then I join the queue\r\n\r\n  Scenario: Attempting to join a queue while already in a game\r\n    Given I am already in an active game\r\n    And I am connected to the system\r\n    When I request to join the queue\r\n    Then I receive an error message\r\n    And I remain in my current game\r\n    \r\n  Scenario: Not connected to the system\r\n    Given I am not currently in a game\r\n    When I request to join the queue\r\n    And I am not connected to the system\r\n    Then I receive an error message",
+      "linkedRequirements": [
+        {
+          "id": "R-23",
+          "text": "The player must be able to join the queue for a game"
+        },
+        {
+          "id": "R-15",
+          "text": "A player must be able to forfeit the game"
+        }
+      ]
+    },
+    {
+      "id": "S-3",
+      "title": "Request a cell",
+      "text": "Feature: Input cell coordinates\n  As a player,\n  I want to input cell coordinates\n  So that I can be given the appropriate challenge\n  \n  Scenario: Approved coordinates input\n    Given I input coordinates\n    And the system approves my coordinates\n    Then I get a challenge\n \n  Scenario: Dissaproved coordinates input\n    Given I input coordinates\n    But the system dissaproves my coordinates\n    Then I am given an error message\n    And I can input new coordinates",
+      "linkedRequirements": [
+        {
+          "id": "R-1",
+          "text": "The player must be able to input cell cordinates"
+        }
+      ]
+    },
+    {
+      "id": "S-4",
+      "title": "Acquire a cell",
+      "text": " Feature: Acquire a cell\n   As a player, \n   I want to be able to complete the given challenge \n   So that Ι can acquire a cell\n   \n Scenario: Succesful challenge completion\n   Given Ι completed my challenge\n   And the timer did not run out\n   Then the system plays a success sound\n   And I am given the cell\n   \n  Scenario: Unsuccesful challenge completion\n    Given I failed my challenge\n    Then the system plays a clown sound\n    And I wait for the next round\n    \n  Scenario: Timer run out\n    Given I am working on the challenge\n    And I am not yet finished\n    When the timer runs out\n    Then the system plays a clown sound\n    And I wait for the next round",
+      "linkedRequirements": [
+        {
+          "id": "R-2",
+          "text": "The player must be able to acquire a cell"
+        },
+        {
+          "id": "R-17",
+          "text": "The player must be able to complete challenges"
+        }
+      ]
+    }
+  ]
+}
