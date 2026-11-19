@@ -1,0 +1,30 @@
+{
+  "name": "degrid-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "In-memory Degrid REST API implementing the supplied OpenAPI 1.1.0",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test --test-concurrency=1 test/*.test.js",
+    "check:spec": "node scripts/check-spec.js",
+    "check:code": "node scripts/check-code.js",
+    "demo": "node scripts/demo.js"
+  },
+  "dependencies": {
+    "cors": "2.8.6",
+    "dotenv": "18.0.10",
+    "express": "5.3.0",
+    "multer": "2.5.0",
+    "swagger-ui-express": "5.0.1"
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-parser": "13.1.0",
+    "acorn": "8.19.0",
+    "ajv": "8.20.0"
+  }
+}
