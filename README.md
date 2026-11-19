@@ -1,10 +1,10 @@
-# Degrid backend — οδηγίες για την Αναστασία
+# Degrid backend — οδηγίες χρήσης
 
 Backend REST API με Node.js, Express και ES modules, σύμφωνα με το παραδομένο
 OpenAPI **1.1.0, 26 λειτουργίες**. Όλα τα δεδομένα παραμένουν στη μνήμη.
 Δεν απαιτούνται βάση δεδομένων, λογαριασμοί, κλειδιά API ή συνδρομή.
 
-## 1. Τι περιλαμβάνει το πακέτο
+## 1. Τι περιλαμβάνει το αποθετήριο
 
 - `app.js`, `server.js`: δημιουργία εφαρμογής και εκκίνηση server.
 - `models/`: απλά αντικείμενα Player, Game, Grid, Challenge και αρχικά δεδομένα.
@@ -19,14 +19,14 @@ OpenAPI **1.1.0, 26 λειτουργίες**. Όλα τα δεδομένα πα�
 - `API-REFERENCE.md`: όλες οι διαδρομές, σώματα αιτημάτων και βασικές απαντήσεις.
 - `IMPLEMENTATION.md`: πλάνο, σταδιακή ανάπτυξη, τεχνικές αποφάσεις και όρια.
 - `REQUIREMENTS.md`: αντιστοίχιση απαιτήσεων με λειτουργίες και δοκιμές.
-- `TEST-RESULTS.md`: τι ελέγχθηκε στο τελικό πακέτο.
+- `TEST-RESULTS.md`: τι ελέγχθηκε στον τελικό κώδικα.
 - `package-lock.json`: κλειδωμένες εκδόσεις για επαναλήψιμη εγκατάσταση.
 
-Το πακέτο αφορά **το backend**. Δεν περιλαμβάνει React frontend, ήχους ή οθόνες παιχνιδιού.
+Το αποθετήριο αφορά **το backend**. Δεν περιλαμβάνει React frontend, ήχους ή οθόνες παιχνιδιού.
 
 ## 2. Απαραίτητο πρόγραμμα
 
-Node.js **22.19.0 ή νεότερο**, με npm. Ο έλεγχος της παράδοσης έγινε με Node.js 24.22.3.
+Node.js **22.19.0 ή νεότερο**, με npm. Ο έλεγχος έγινε με Node.js 24.22.3.
 Σε υπολογιστή χωρίς Node, κατέβασε τον εγκαταστάτη από το [nodejs.org](https://nodejs.org/).
 Μετά την εγκατάσταση άνοιξε ξανά το τερματικό και έλεγξε:
 
@@ -41,7 +41,7 @@ npm --version
 
 ## 3. Εγκατάσταση και εκκίνηση
 
-1. Αποσυμπίεσε το ZIP. Μην εκτελείς τα αρχεία μέσα από την προεπισκόπηση του ZIP.
+1. Κάνε clone το αποθετήριο (ή άνοιξε τον τοπικό φάκελο του έργου).
 2. Άνοιξε τερματικό **μέσα στον φάκελο `degrid-backend`**, εκεί όπου υπάρχει το `package.json`.
 3. Εκτέλεσε:
 
@@ -85,8 +85,6 @@ npm run demo
 
 ## 5. Χειροκίνητη δοκιμή με curl
 
-Σε Windows PowerShell χρησιμοποίησε **`curl.exe`**, ώστε να μην ενεργοποιηθεί
-το διαφορετικό PowerShell alias. Σε macOS/Linux γράψε `curl` στις ίδιες εντολές.
 Τα JSON δίνονται από αρχεία για να αποφεύγονται λάθη με εισαγωγικά.
 
 Για το παρακάτω ακριβές παράδειγμα κάνε **νέα εκκίνηση του server** και μην τρέξεις
@@ -94,13 +92,13 @@ npm run demo
 Ο παίκτης 1 ξεκινά τη σειρά του και το πρώτο challenge έχει ID 1.
 
 ```text
-curl.exe http://127.0.0.1:3000/games
-curl.exe http://127.0.0.1:3000/games/1/turn
-curl.exe -X POST http://127.0.0.1:3000/games/1/players/1/validate-input -H "Content-Type: application/json" --data-binary "@examples/coordinates.json"
-curl.exe "http://127.0.0.1:3000/games/1/challenges/1?playerId=1"
-curl.exe -X POST http://127.0.0.1:3000/games/1/players/1/challenge-answer -H "Content-Type: application/json" --data-binary "@examples/answer.json"
-curl.exe http://127.0.0.1:3000/games/1/players
-curl.exe http://127.0.0.1:3000/games/1/turn
+curl http://127.0.0.1:3000/games
+curl http://127.0.0.1:3000/games/1/turn
+curl -X POST http://127.0.0.1:3000/games/1/players/1/validate-input -H "Content-Type: application/json" --data-binary "@examples/coordinates.json"
+curl "http://127.0.0.1:3000/games/1/challenges/1?playerId=1"
+curl -X POST http://127.0.0.1:3000/games/1/players/1/challenge-answer -H "Content-Type: application/json" --data-binary "@examples/answer.json"
+curl http://127.0.0.1:3000/games/1/players
+curl http://127.0.0.1:3000/games/1/turn
 ```
 
 Αναμενόμενο αποτέλεσμα απάντησης:
@@ -125,17 +123,17 @@ curl.exe http://127.0.0.1:3000/games/1/turn
 Για δημιουργία νέου παιχνιδιού ή προσθήκη παίκτη στην ουρά:
 
 ```text
-curl.exe -X POST http://127.0.0.1:3000/games -H "Content-Type: application/json" --data-binary "@examples/create-game.json"
-curl.exe -X POST http://127.0.0.1:3000/queue/players -H "Content-Type: application/json" --data-binary "@examples/queue.json"
+curl -X POST http://127.0.0.1:3000/games -H "Content-Type: application/json" --data-binary "@examples/create-game.json"
+curl -X POST http://127.0.0.1:3000/queue/players -H "Content-Type: application/json" --data-binary "@examples/queue.json"
 ```
 
 Για αλλαγή προφίλ, το Swagger απαιτεί **multipart/form-data**, όχι JSON:
 
 ```text
-curl.exe -X PUT http://127.0.0.1:3000/games/1/players/1/profile -F "username=Anastasia" -F "language=el"
+curl -X PUT http://127.0.0.1:3000/games/1/players/1/profile -F "username=PlayerOne" -F "language=el"
 ```
 
-Προαιρετική εικόνα: πρόσθεσε `-F "avatar=@C:/path/to/avatar.png"` με πραγματική διαδρομή.
+Προαιρετική εικόνα: πρόσθεσε `-F "avatar=@/path/to/avatar.png"` με πραγματική διαδρομή.
 Γίνονται δεκτά PNG/JPEG/GIF/WebP έως 1 MiB. Η εικόνα μένει στη μνήμη ως data URL.
 
 ## 6. Αρχικά δεδομένα και χρόνοι
@@ -168,8 +166,7 @@ curl.exe -X PUT http://127.0.0.1:3000/games/1/players/1/profile -F "username=Ana
 
 ## 7. Ρυθμίσεις και React
 
-Το `.env` είναι προαιρετικό. Αν χρειάζεται, αντίγραψε το `.env.example` σε `.env`.
-Σε PowerShell: `Copy-Item .env.example .env`. Σε macOS/Linux: `cp .env.example .env`.
+Το `.env` είναι προαιρετικό. Αν χρειάζεται, αντίγραψε το `.env.example` σε `.env` (`cp .env.example .env`).
 
 | Ρύθμιση | Προεπιλογή | Χρήση |
 |---|---:|---|
@@ -182,7 +179,7 @@ curl.exe -X PUT http://127.0.0.1:3000/games/1/players/1/profile -F "username=Ana
 Για άνετη χειροκίνητη παρουσίαση μπορείς να αυξήσεις `TURN_SECONDS=600` και
 `INACTIVITY_SECONDS=1800` και να επανεκκινήσεις. Το όριο ερώτησης παραμένει 40 δευτερόλεπτα.
 
-Το React χρησιμοποιεί βάση `http://127.0.0.1:3000`, χωρίς πρόσθετο `/api`.
+Το React χρησιμοποιεί βάση `[http://127.0.0.1:3000](http://127.0.0.1:3000)`, χωρίς πρόσθετο `/api`.
 Το CORS επιτρέπει όλες τις προελεύσεις. Δεν υπάρχει authentication, σύμφωνα με το prompt.
 Η απάντηση έχει πάντα `{success, data, error, message}`. Σφάλματα εισόδου: 400,
 ανύπαρκτοι πόροι: 404, οι ορισμένες συγκρούσεις: 409, απρόβλεπτα σφάλματα: 500.
@@ -225,7 +222,6 @@ npm test
 | Πρόβλημα | Ενέργεια |
 |---|---|
 | `npm` δεν αναγνωρίζεται | Εγκατάστησε Node.js με npm και άνοιξε νέο τερματικό. |
-| Το PowerShell μπλοκάρει `npm.ps1` | Χρησιμοποίησε `npm.cmd install`, `npm.cmd start`, `npm.cmd test`. Δεν χρειάζεται αλλαγή πολιτικής συστήματος. |
 | Δεν βρίσκεται `package.json` | Άνοιξε τερματικό στον φάκελο `degrid-backend`. |
 | `EADDRINUSE` | Κλείσε προηγούμενο server ή άλλαξε PORT στο `.env`. |
 | `It is another player's turn` | Δες `/games/1/turn`. Για το αρχικό παράδειγμα επανεκκίνησε ή τρέξε `npm run demo`. |
@@ -233,5 +229,4 @@ npm test
 | Λάθος Content-Type στο profile | Χρησιμοποίησε multipart/form-data με `-F`, όχι JSON. |
 | Δεν εμφανίζεται παιχνίδι στον browser | Αυτό είναι backend. Χρησιμοποίησε `/api-docs/` ή σύνδεσε το React frontend. |
 
-Αν αλλάξεις PORT, το demo μπορεί να πάρει άλλη βάση από `BASE_URL`:
-σε PowerShell `$env:BASE_URL='http://127.0.0.1:3001'` και μετά `npm run demo`.
+Αν αλλάξεις PORT, το demo μπορεί να πάρει άλλη βάση από `BASE_URL` (π.χ. `BASE_URL=[http://127.0.0.1:3001](http://127.0.0.1:3001) npm run demo`).
