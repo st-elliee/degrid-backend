@@ -174,10 +174,11 @@ curl -X PUT http://127.0.0.1:3000/games/1/players/1/profile -F "username=PlayerO
 | HOST | 127.0.0.1 | Τοπική διεύθυνση ακρόασης |
 | INACTIVITY_SECONDS | 300 | Όριο αδράνειας |
 | TURN_SECONDS | 60 | Χρόνος επιλογής πριν από challenge |
+| CHALLENGE_SECONDS | 40 | Χρόνος απάντησης στην ερώτηση (challenge) |
 | LOG_REQUESTS | true | Καταγραφή μεθόδου, διαδρομής, status και διάρκειας |
 
 Για άνετη χειροκίνητη παρουσίαση μπορείς να αυξήσεις `TURN_SECONDS=600` και
-`INACTIVITY_SECONDS=1800` και να επανεκκινήσεις. Το όριο ερώτησης παραμένει 40 δευτερόλεπτα.
+`INACTIVITY_SECONDS=1800` και να επανεκκινήσεις. Το όριο ερώτησης είναι 40 δευτερόλεπτα και αλλάζει με το `CHALLENGE_SECONDS`.
 
 Το React χρησιμοποιεί βάση `http://127.0.0.1:3000`, χωρίς πρόσθετο `/api`.
 Το CORS επιτρέπει όλες τις προελεύσεις. Δεν υπάρχει authentication, σύμφωνα με το prompt.
