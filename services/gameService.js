@@ -1,4 +1,4 @@
-import { GRID_SIZE, MIN_PLAYERS, MAX_PLAYERS, QUEUE_SECONDS, CENTRE_CELLS } from '../config/constants.js';
+import { GRID_SIZE, MIN_PLAYERS, MAX_PLAYERS, queueSeconds, CENTRE_CELLS } from '../config/constants.js';
 import { Game } from '../models/Game.js';
 import { Grid } from '../models/Grid.js';
 import { Player } from '../models/Player.js';
@@ -165,7 +165,7 @@ export class GameService {
       else if (!pending && now - game.turnStartedAt >= this.turnSeconds * 1000) this.advance(game);
     }
     this.matchQueue();
-    if (this.state.queue.length > 0 && now - this.state.queueStartedAt >= QUEUE_SECONDS * 1000) {
+    if (this.state.queue.length > 0 && now - this.state.queueStartedAt >= queueSeconds() * 1000) {
       this.state.queueNotice = true; this.state.queueStartedAt = now;
     }
   }
@@ -222,7 +222,7 @@ export class GameService {
     const players = [];
     for (const id of this.state.queue) players.push(this.playerView(this.player(id)));
     return { count: players.length, minPlayers: MIN_PLAYERS, maxPlayers: MAX_PLAYERS,
-      remainingTime: Math.max(0, QUEUE_SECONDS - Math.floor((this.now() - this.state.queueStartedAt) / 1000)), players };
+      remainingTime: Math.max(0, queueSeconds() - Math.floor((this.now() - this.state.queueStartedAt) / 1000)), players };
   }
 
   /** Provide queue feedback for the under-minimum timeout scenario. */
